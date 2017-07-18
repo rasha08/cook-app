@@ -1,0 +1,31 @@
+{
+  "name": "cook-app",
+  "version": "1.0.0",
+  "description": "- web app that provides user a posibility to insert food that he/she have right now and app will generate a list of recipes that user can cook with passed ingediants.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasha08/cook-app.git"
+  },
+  "author": "Radovan Stevanovic <rasha08@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rasha08/cook-app/issues"
+  },
+  "homepage": "https://github.com/rasha08/cook-app#readme",
+  "dependencies": {
+    "firebase": "^4.1.3",
+    "jasmine": "^2.6.0",
+    "lodash": "^4.17.4",
+    "prettier": "^1.5.3",
+    "rxjs": "^5.4.2"
+  },
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "nyc": "^11.0.3"
+  }
+}

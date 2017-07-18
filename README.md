@@ -4,7 +4,7 @@
 
 # Client Code
 
-- React:  ^15 , Router: ^4
+- Angular: ^4 
 
 # Server Code
 
