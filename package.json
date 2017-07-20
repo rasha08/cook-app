@@ -4,7 +4,8 @@
   "description": "- web app that provides user a posibility to insert food that he/she have right now and app will generate a list of recipes that user can cook with passed ingediants.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "prettier --write --single-quote --print-width=120 --tab-width=2 \"**/*.{js,jsx}\""        
   },
   "repository": {
     "type": "git",
