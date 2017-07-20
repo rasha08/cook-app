@@ -64,7 +64,7 @@ Object.defineProperty(Recipe.prototype, 'id', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: id must be 0 or greatter then, given value is ${value}`;
@@ -113,7 +113,7 @@ Object.defineProperty(Recipe.prototype, 'image', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: image is an empty string, expected non-empty string, given a string with length of ${value.length}`;
@@ -137,7 +137,7 @@ Object.defineProperty(Recipe.prototype, 'ingredients', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: ingredients is an empty array, expected array with multiple integer values,
@@ -162,7 +162,7 @@ Object.defineProperty(Recipe.prototype, 'level', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: level is an empty string, expected non-empty string, given string is of length ${value.length}`;
@@ -186,7 +186,7 @@ Object.defineProperty(Recipe.prototype, 'name', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: name is an empty string, expected non-empty string, given string is of length ${value.length}`;
@@ -210,7 +210,7 @@ Object.defineProperty(Recipe.prototype, 'servings', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: servings must be greater than zero, given value is ${value}`;
@@ -234,7 +234,7 @@ Object.defineProperty(Recipe.prototype, 'timeOfPeparation', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: timeOfPreparation must be greater than zero, given value is ${value}`;
@@ -257,7 +257,7 @@ Object.defineProperty(Recipe.prototype, 'totalTime', {
             writable: true
           });
         } else {
-          return
+          return;
         }
       } else {
         throw `Error: totalTime must be greater than zero, given value is ${value}`;
@@ -267,7 +267,7 @@ Object.defineProperty(Recipe.prototype, 'totalTime', {
     }
   }
 });
-Recipe.prototype.getObjectRepresentation = function () {
+Recipe.prototype.getObjectRepresentation = function() {
   return {
     name: this.name,
     description: this.description,
