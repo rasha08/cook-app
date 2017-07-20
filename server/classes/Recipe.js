@@ -1,4 +1,7 @@
 'use strict';
+function init(constructorObj) {
+  return Object.seal(new Recipe(constructorObj));
+}
 function Recipe(constructorObj) {
   if (
     constructorObj.amount &&
@@ -20,8 +23,11 @@ function Recipe(constructorObj) {
     this.level = constructorObj.level;
     this.name = constructorObj.name;
     this.servings = constructorObj.servings;
+    this.totalTime = constructorObj.totalTime;
+    this.s = constructorObj.timeOfPeparation;
   }
 }
+
 // Creating set and get method for amount
 Object.defineProperty(Recipe.prototype, 'amount', {
   get: () => this._amount,
@@ -35,12 +41,36 @@ Object.defineProperty(Recipe.prototype, 'amount', {
             enumerable: false,
             writable: true
           });
-        } else this.amount = value;
+        } else return;
       } else {
         throw `Error: amount is an empty array, expected array with multiple string values, given array with length of ${value.length}`;
       }
     } else {
       throw `Error: amount must be an Array passed value is of type ${typeof value}`;
+    }
+  }
+});
+
+Object.defineProperty(Recipe.prototype, 'id', {
+  get: () => this._id,
+  set: value => {
+    if (typeof value == 'number') {
+      if (value >= 0) {
+        if (!this.servings) {
+          // Once the validation is passed private property _servings is created
+          Object.defineProperty(this, '_id', {
+            value: value,
+            enumerable: false,
+            writable: true
+          });
+        } else {
+          return
+        }
+      } else {
+        throw `Error: id must be 0 or greatter then, given value is ${value}`;
+      }
+    } else {
+      throw `Error: id must be integer, given value is of type ${typeof value}`;
     }
   }
 });
@@ -58,7 +88,7 @@ Object.defineProperty(Recipe.prototype, 'description', {
             writable: true
           });
         } else {
-          this.description = value;
+          return;
         }
       } else {
         throw `Error: description is an empty string, expected  non-empty string,
@@ -83,7 +113,7 @@ Object.defineProperty(Recipe.prototype, 'image', {
             writable: true
           });
         } else {
-          this.image = value;
+          return
         }
       } else {
         throw `Error: image is an empty string, expected non-empty string, given a string with length of ${value.length}`;
@@ -107,7 +137,7 @@ Object.defineProperty(Recipe.prototype, 'ingredients', {
             writable: true
           });
         } else {
-          this.ingredients = value;
+          return
         }
       } else {
         throw `Error: ingredients is an empty array, expected array with multiple integer values,
@@ -132,7 +162,7 @@ Object.defineProperty(Recipe.prototype, 'level', {
             writable: true
           });
         } else {
-          this.level = value;
+          return
         }
       } else {
         throw `Error: level is an empty string, expected non-empty string, given string is of length ${value.length}`;
@@ -156,7 +186,7 @@ Object.defineProperty(Recipe.prototype, 'name', {
             writable: true
           });
         } else {
-          this.name = value;
+          return
         }
       } else {
         throw `Error: name is an empty string, expected non-empty string, given string is of length ${value.length}`;
@@ -180,7 +210,7 @@ Object.defineProperty(Recipe.prototype, 'servings', {
             writable: true
           });
         } else {
-          this.servings = value;
+          return
         }
       } else {
         throw `Error: servings must be greater than zero, given value is ${value}`;
@@ -195,7 +225,7 @@ Object.defineProperty(Recipe.prototype, 'timeOfPeparation', {
   get: () => this._timeOfPreparation,
   set: value => {
     if (typeof value == 'number') {
-      if (value > 0) {
+      if (value>=0) {
         if (!this.timeOfPreparation) {
           // Once the validation is passed private property _timeOfPreparation is created
           Object.defineProperty(this, '_timeOfPreparation', {
@@ -204,7 +234,7 @@ Object.defineProperty(Recipe.prototype, 'timeOfPeparation', {
             writable: true
           });
         } else {
-          this.timeOfPreparation = value;
+          return
         }
       } else {
         throw `Error: timeOfPreparation must be greater than zero, given value is ${value}`;
@@ -218,8 +248,8 @@ Object.defineProperty(Recipe.prototype, 'timeOfPeparation', {
 Object.defineProperty(Recipe.prototype, 'totalTime', {
   get: () => this._totalTime,
   set: value => {
-    if (typeof totalTime == 'number') {
-      if (totalTime > 0) {
+    if (typeof value == 'number') {
+      if (value > 0) {
         if (!this.totalTime) {
           Object.defineProperty(this, '_totalTime', {
             value: value,
@@ -227,7 +257,7 @@ Object.defineProperty(Recipe.prototype, 'totalTime', {
             writable: true
           });
         } else {
-          this.totalTime = value;
+          return
         }
       } else {
         throw `Error: totalTime must be greater than zero, given value is ${value}`;
@@ -250,4 +280,5 @@ Recipe.prototype.getObjectRepresentation = function() {
     totalTime: this.totalTime
   };
 };
-module.exports.Recipe = Recipe;
+
+module.exports.init = init;

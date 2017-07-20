@@ -628,10 +628,11 @@ var objs = [];
 
 for (let obj of recepies) {
   try {
-    objs.push(new Recipe.Recipe(obj));
+    objs.push(Recipe.init(obj));
   } catch (error) {
     console.log(error);
     console.log(obj.id);
   }
 }
+console.log(objs[4].name = 'Neko test ime');
 console.log(objs[4].getObjectRepresentation());
